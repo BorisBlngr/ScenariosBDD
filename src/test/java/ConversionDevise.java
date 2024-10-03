@@ -6,10 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConversionDevise {
    private Montant notreMontant;
+   private Double tauxDeChange = 1.0;
 
    @When("Je convertis {double} {string} en {string}")
    public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
-      notreMontant = Montant.convertir(montant, deviseCible);
+      notreMontant = Montant.convertir(montant, deviseCible, this.tauxDeChange);
    }
 
    @Then("Je dois avoir {double} {string}")
@@ -29,6 +30,6 @@ public class ConversionDevise {
 
    @Given("Le taux de change de {string} à {string} est de {double}")
    public void leTauxDeChangeDeAEstDe(String deviseSource, String deviseCible, Double tauxDeChange) {
-
+      this.tauxDeChange = tauxDeChange;
    }
 }
