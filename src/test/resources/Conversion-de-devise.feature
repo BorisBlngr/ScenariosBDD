@@ -33,3 +33,8 @@ Feature: Conversion de devise
       Given Le taux de change de "EUR" à "CAD" est de 1
       When Je convertis 2 "EUR" en "CAD"
       Then Je dois avoir 2 "CAD"
+
+   Scenario: Je multiplie le montant en entrée par le taux de change à 130
+      Given Le taux de change de "EUR" à "JPY" est de 130
+      When Je convertis 1 "EUR" en "JPY"
+      Then Je dois avoir 130 "JPY"
