@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConversionDevise {
    private Montant notreMontant;
    private Double tauxDeChange = 1.0;
-   private boolean tronqueALUnite = false;
+   private int nombreDeDecimales;
 
    @When("Je convertis {double} {string} en {string}")
    public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
-      notreMontant = Montant.convertir(montant, new DeviseCible(deviseCible, tronqueALUnite), this.tauxDeChange);
+      notreMontant = Montant.convertir(montant, new DeviseCible(deviseCible, nombreDeDecimales), this.tauxDeChange);
    }
 
    @Then("Je dois avoir {double} {string}")
@@ -37,6 +37,11 @@ public class ConversionDevise {
 
    @And("{string} doit être tronqué à l'unité")
    public void doitEtreTronqueALUnite(String deviseCible) {
-      tronqueALUnite = true;
+      this.nombreDeDecimales = 0;
+   }
+
+   @And("{string} doit être avec {int} décimales")
+   public void doitEtreAvecDecimales(String deviseCible, int nombreDeDecimales) {
+      this.nombreDeDecimales = nombreDeDecimales;
    }
 }

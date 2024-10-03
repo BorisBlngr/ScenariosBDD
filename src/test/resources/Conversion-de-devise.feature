@@ -5,6 +5,7 @@ Feature: Conversion de devise
       Then Je dois avoir 1 "EUR"
 
    Scenario: Conversion vers une même devise pour un montant avec décimales
+      Given "USD" doit être avec 2 décimales
       When Je convertis 2.5 "USD" en "USD"
       Then Je dois avoir 2.5 "USD"
 
@@ -41,16 +42,19 @@ Feature: Conversion de devise
 
    Scenario: Je multiplie le montant en entrée par le taux de change à 1.32
       Given Le taux de change de "EUR" à "USD" est de 1.32
+      And "USD" doit être avec 2 décimales
       When Je convertis 1 "EUR" en "USD"
       Then Je dois avoir 1.32 "USD"
 
    Scenario: Je multiplie le montant en entrée par le taux de change à 1.32
       Given Le taux de change de "EUR" à "USD" est de 1.32
+      And "USD" doit être avec 2 décimales
       When Je convertis 2 "EUR" en "USD"
       Then Je dois avoir 2.64 "USD"
 
    Scenario: Je multiplie le montant en entrée par le taux de change à 1.10
       Given Le taux de change de "EUR" à "USD" est de 1.10
+      And "USD" doit être avec 2 décimales
       When Je convertis 1.10 "EUR" en "USD"
       Then Je dois avoir 1.21 "USD"
 
@@ -65,3 +69,9 @@ Feature: Conversion de devise
       And "BIF" doit être tronqué à l'unité
       When Je convertis 3 "EUR" en "BIF"
       Then Je dois avoir 9678 "BIF"
+
+   Scenario: On ajoute les decimales pour les devises cibles ayant plusieurs décimales
+      Given Le taux de change de "EUR" à "JOD" est de 0.7812
+      And "JOD" doit être avec 3 décimales
+      When Je convertis 1 "EUR" en "JOD"
+      Then Je dois avoir 0.781 "JOD"
