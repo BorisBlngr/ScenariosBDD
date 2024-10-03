@@ -59,3 +59,9 @@ Feature: Conversion de devise
       And "JPY" doit être tronqué à l'unité
       When Je convertis 300.44 "EUR" en "JPY"
       Then Je dois avoir 39057 "JPY"
+
+   Scenario: On tronque les décimales pour les devises cibles sans décimales
+      Given Le taux de change de "EUR" à "BIF" est de 3226
+      And "BIF" doit être tronqué à l'unité
+      When Je convertis 3 "EUR" en "BIF"
+      Then Je dois avoir 9678 "BIF"
