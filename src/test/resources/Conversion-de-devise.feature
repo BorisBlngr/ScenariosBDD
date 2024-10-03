@@ -43,3 +43,13 @@ Feature: Conversion de devise
       Given Le taux de change de "EUR" à "USD" est de 1.32
       When Je convertis 1 "EUR" en "USD"
       Then Je dois avoir 1.32 "USD"
+
+   Scenario: Je multiplie le montant en entrée par le taux de change à 1.32
+      Given Le taux de change de "EUR" à "USD" est de 1.32
+      When Je convertis 2 "EUR" en "USD"
+      Then Je dois avoir 2.64 "USD"
+
+   Scenario: Je multiplie le montant en entrée par le taux de change à 1.10
+      Given Le taux de change de "EUR" à "USD" est de 1.10
+      When Je convertis 1.10 "EUR" en "USD"
+      Then Je dois avoir 1.21 "USD"
