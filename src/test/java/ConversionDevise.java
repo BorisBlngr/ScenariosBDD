@@ -1,12 +1,21 @@
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class ConversionDevise {
-  @When("Je convertis {double} {string} en {string}")
-  public void jeConvertisEn(Double arg0, String arg2, String arg3) {
-  }
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-  @Then("Je dois avoir {double} {string}")
-  public void jeDoisAvoir(Double arg0, String arg2) {
-  }
+public class ConversionDevise {
+   private Double montantDuWhen;
+   private String devise;
+
+   @When("Je convertis {double} {string} en {string}")
+   public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
+      montantDuWhen = montant;
+      this.devise = deviseCible;
+   }
+
+   @Then("Je dois avoir {double} {string}")
+   public void jeDoisAvoir(Double montant, String deviseCible) {
+      assertEquals(montantDuWhen, montant);
+      assertEquals(devise, deviseCible);
+   }
 }
