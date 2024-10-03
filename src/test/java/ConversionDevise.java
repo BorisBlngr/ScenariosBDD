@@ -1,3 +1,4 @@
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -24,5 +25,10 @@ public class ConversionDevise {
    @When("Je convertis {string} {string} en {string}")
    public void jeConvertisEn(String montant, String deviseSource, String deviseCible) {
       notreMontant = Montant.convertir(montant, deviseCible);
+   }
+
+   @Given("Le taux de change de {string} à {string} est de {double}")
+   public void leTauxDeChangeDeAEstDe(String deviseSource, String deviseCible, Double tauxDeChange) {
+
    }
 }
