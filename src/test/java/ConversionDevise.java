@@ -1,3 +1,4 @@
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,10 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConversionDevise {
    private Montant notreMontant;
    private Double tauxDeChange = 1.0;
+   private boolean tronqueALUnite = false;
 
    @When("Je convertis {double} {string} en {string}")
    public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
-      notreMontant = Montant.convertir(montant, deviseCible, this.tauxDeChange);
+      notreMontant = Montant.convertir(montant, new DeviseCible(deviseCible, tronqueALUnite), this.tauxDeChange);
    }
 
    @Then("Je dois avoir {double} {string}")
@@ -31,5 +33,10 @@ public class ConversionDevise {
    @Given("Le taux de change de {string} à {string} est de {double}")
    public void leTauxDeChangeDeAEstDe(String deviseSource, String deviseCible, Double tauxDeChange) {
       this.tauxDeChange = tauxDeChange;
+   }
+
+   @And("{string} doit être tronqué à l'unité")
+   public void doitEtreTronqueALUnite(String deviseCible) {
+      tronqueALUnite = true;
    }
 }

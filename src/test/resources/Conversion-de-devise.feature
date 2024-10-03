@@ -53,3 +53,9 @@ Feature: Conversion de devise
       Given Le taux de change de "EUR" à "USD" est de 1.10
       When Je convertis 1.10 "EUR" en "USD"
       Then Je dois avoir 1.21 "USD"
+
+   Scenario: On tronque les décimales pour les devises cibles sans décimales
+      Given Le taux de change de "EUR" à "JPY" est de 130
+      And "JPY" doit être tronqué à l'unité
+      When Je convertis 300.44 "EUR" en "JPY"
+      Then Je dois avoir 39057 "JPY"

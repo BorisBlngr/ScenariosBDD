@@ -1,10 +1,13 @@
 import java.math.BigDecimal;
 
 public record Montant(Double valeur, String devise) {
-   static Montant convertir(Double montant, String deviseCible, Double tauxDeChange) {
+   static Montant convertir(Double montant, DeviseCible deviseCible, Double tauxDeChange) {
       if (montant < 0) return null;
       double doubleValue = multiply(montant, tauxDeChange);
-      return new Montant(doubleValue, deviseCible);
+      if (deviseCible.tronqueALUnite()) {
+         doubleValue = Math.floor(doubleValue);
+      }
+      return new Montant(doubleValue, deviseCible.nom());
    }
 
    private static double multiply(Double montant, Double tauxDeChange) {
