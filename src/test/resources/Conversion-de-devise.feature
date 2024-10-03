@@ -38,3 +38,8 @@ Feature: Conversion de devise
       Given Le taux de change de "EUR" à "JPY" est de 130
       When Je convertis 1 "EUR" en "JPY"
       Then Je dois avoir 130 "JPY"
+
+   Scenario: Je multiplie le montant en entrée par le taux de change à 1.32
+      Given Le taux de change de "EUR" à "USD" est de 1.32
+      When Je convertis 1 "EUR" en "USD"
+      Then Je dois avoir 1.32 "USD"
