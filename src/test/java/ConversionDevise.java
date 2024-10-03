@@ -8,8 +8,12 @@ public class ConversionDevise {
 
    @When("Je convertis {double} {string} en {string}")
    public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
-      if (montant < 0) return;
-      notreMontant = new Montant(montant, deviseCible);
+      notreMontant = convertir(montant, deviseCible);
+   }
+
+   private static Montant convertir(Double montant, String deviseCible) {
+      if (montant < 0) return null;
+      return new Montant(montant, deviseCible);
    }
 
    @Then("Je dois avoir {double} {string}")
