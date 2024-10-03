@@ -20,4 +20,9 @@ public class ConversionDevise {
    public void jeNePeuxPasConvertir() {
       assertEquals(null, notreMontant);
    }
+
+   @When("Je convertis {string} {string} en {string}")
+   public void jeConvertisEn(String montant, String deviseSource, String deviseCible) {
+      notreMontant = Montant.convertir(montant, deviseCible);
+   }
 }

@@ -10,3 +10,11 @@ Feature: Conversion de devise
     Scenario: Si j'ai un montant négatif, je ne peux pas convertir
     When Je convertis -1 "EUR" en "EUR"
     Then Je ne peux pas convertir
+
+    Scenario: J'ai un montant de -2.5, je ne peux pas convertir
+    When Je convertis -2.5 "USD" en "USD"
+    Then Je ne peux pas convertir
+
+    Scenario: On ne peut pas mettre de lettre dans le montant
+      When Je convertis "abc" "USD" en "USD"
+      Then Je ne peux pas convertir

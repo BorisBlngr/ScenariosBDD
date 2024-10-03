@@ -3,4 +3,8 @@ public record Montant(Double valeur, String devise) {
       if (montant < 0) return null;
       return new Montant(montant, deviseCible);
    }
+
+   public static Montant convertir(String montant, String deviseCible) {
+      return null;
+   }
 }
