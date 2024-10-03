@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ConversionDevise {
    private Double montantDeviseCible;
    private String deviseCible;
+   private Montant notreMontant;
 
    @When("Je convertis {double} {string} en {string}")
    public void jeConvertisEn(Double montant, String deviseSource, String deviseCible) {
@@ -16,13 +17,11 @@ public class ConversionDevise {
 
    @Then("Je dois avoir {double} {string}")
    public void jeDoisAvoir(Double montant, String deviseCible) {
-      assertEquals(montantDeviseCible, montant);
-      assertEquals(this.deviseCible, deviseCible);
+      assertEquals(new Montant(montant, deviseCible), new Montant(montantDeviseCible, this.deviseCible));
    }
 
    @Then("Je ne peux pas convertir")
    public void jeNePeuxPasConvertir() {
-      assertEquals(null, montantDeviseCible);
-      assertEquals(null, deviseCible);
+      assertEquals(null, notreMontant);
    }
 }
